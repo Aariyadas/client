@@ -1,12 +1,27 @@
 import React from "react";
-import { Button, Form, Input, Radio } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Form, Input, Radio, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import { LoginUser } from "../../apicalls/userApi";
 
 
 const Login = () => {
   const [type, setType] = React.useState("donar");
-  const onFinish=(values)=>{
+  const navigate =useNavigate()
+  const onFinish= async(values)=>{
     console.log(values)
+    try{
+        const response =await LoginUser(values)
+        if(response.success){
+            message.success(response.message)
+            localStorage.setItem("token",response.data)
+            navigate("/")
+        }else{
+            throw new Error(response.message)
+        }
+
+    }catch(error){
+        message.error(error.message)
+    }
   }
   return (
     <div className="flex h-screen items-center justify-center bg-primary">
@@ -45,7 +60,7 @@ const Login = () => {
     
        
         <Button className="bg-primary hover:bg-primary-700 block" htmlType="submit">
-          Register
+          Login
         </Button>
 
         <Link
