@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { message } from 'antd';
 import { GetCurrentUser } from '../apicalls/userApi';
+import { useNavigate } from 'react-router-dom';
+import { getLoggedInUser } from '../utils/Helper';
 
-const useGetCurrentUser = () => {
+
+const ProtectedPages = ({ children })=>  {
+    const navigate=useNavigate()
   const [currentUser, setCurrentUser] = useState(null);
 
-  useEffect(() => {
+
     const getCurrentUser = async () => {
       try {
         const response = await GetCurrentUser();
@@ -20,20 +24,24 @@ const useGetCurrentUser = () => {
       }
     };
 
-    getCurrentUser();
-  }, []);
+    useEffect(()=>{
+        if(localStorage.getItem("token")){
+            getCurrentUser()
+        }else{
+           navigate("/login") 
+        }
+    },[ ])
 
-  return currentUser;
-};
 
-const ProtectedPages = ({ children }) => {
-  const currentUser = useGetCurrentUser();
+
 
   return (
+    currentUser && (
     <div>
-      {currentUser && <h1>Welcome{currentUser?.name}</h1>}
+      <h1>Welcome{getLoggedInUser(currentUser)}</h1>
       {children}
     </div>
+  )
   );
 };
 

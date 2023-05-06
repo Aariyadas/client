@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Form, Input, Radio, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginUser } from "../../apicalls/userApi";
@@ -12,8 +12,10 @@ const Login = () => {
     try{
         const response =await LoginUser(values)
         if(response.success){
+           
             message.success(response.message)
             localStorage.setItem("token",response.data)
+            
             navigate("/")
         }else{
             throw new Error(response.message)
@@ -23,6 +25,12 @@ const Login = () => {
         message.error(error.message)
     }
   }
+
+  useEffect(()=>{
+    if(localStorage.getItem("token")){
+        navigate("/")
+    }
+  })
   return (
     <div className="flex h-screen items-center justify-center bg-primary">
       <Form

@@ -13,5 +13,5 @@ export const RegisterUser = async (payload) => {
   export const GetCurrentUser = async () =>{
     const response = await axiosInstance("get","/api/users/get-current-users");
     return response;
-
+   
   }
