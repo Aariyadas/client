@@ -8,3 +8,11 @@ export const getLoggedInUser =(user) =>{
     }
 
 }
+
+
+export const getAntdInputValidation =()=>{
+    return [{
+        required:true,
+        message:"Required"
+    }]
+}

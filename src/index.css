@@ -17,11 +17,12 @@ button{
   box-shadow:none !important ;
   height: 40px !important;
   visibility: visible  !important ;
+  border:#a25d5d !important;
 }
 
 input,textarea{
  min-height:40px !important;
-  border:1px solid #a15d5d !important;
+  border:1px solid #a25d5d !important;
 }
 
 input:focus,textarea:focus{

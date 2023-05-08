@@ -4,30 +4,39 @@ import { Link ,useNavigate} from "react-router-dom";
 import OrgHospitalForm from "./OrgHospitalForm";
 
 import {RegisterUser} from '../../apicalls/userApi'
+import { useDispatch } from "react-redux";
+import { SetLoading } from "../../redux/loaderSlice";
+import { getAntdInputValidation } from "../../utils/Helper";
+
 
 const Register = () => {
   const [type, setType] = React.useState("donar");
   const navigate =useNavigate()
+  const dispatch=useDispatch()
   const onFinish= async(values)=>{
   try{
+    dispatch(SetLoading(true))
     console.log(values)
     const response = await RegisterUser({
         ...values,
         userType:type,
      } )
+     dispatch(SetLoading(true))
     if(response.success){
         message.success(response.message)
+        navigate("/login")
     }else{
         throw new Error(response.message)
     }
   }catch(error){
+    dispatch(SetLoading(true))
     message.error(error.message)
 
   }
   }
   useEffect(()=>{
     if(localStorage.getItem("token")){
-        navigate("/")
+        navigate("/login")
     }
   })
   return (
@@ -55,16 +64,16 @@ const Register = () => {
         {type === "donar" && (
           <>
             {" "}
-            <Form.Item label="Name" name='name'>
+            <Form.Item label="Name" name='name'  rules={getAntdInputValidation()}>
               <Input />
             </Form.Item>
-            <Form.Item label="Email" name='email'>
+            <Form.Item label="Email" name='email' rules={getAntdInputValidation()}>
               <Input  type='email'/>
             </Form.Item>
-            <Form.Item label="Phone" name='phone'>
+            <Form.Item label="Phone" name='phone' rules={getAntdInputValidation()}>
               <Input />
             </Form.Item>
-            <Form.Item label="Password" name='password'>
+            <Form.Item label="Password" name='password'  rules={getAntdInputValidation()}>
               <Input  type='password'/>
             </Form.Item>
           </>

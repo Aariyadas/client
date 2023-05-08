@@ -2,15 +2,21 @@ import React, { useEffect } from "react";
 import { Button, Form, Input, Radio, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginUser } from "../../apicalls/userApi";
+import { useDispatch } from "react-redux";
+import { SetLoading } from "../../redux/loaderSlice";
+import { getAntdInputValidation } from "../../utils/Helper";
 
 
 const Login = () => {
   const [type, setType] = React.useState("donar");
   const navigate =useNavigate()
+  const dispatch =useDispatch()
   const onFinish= async(values)=>{
     console.log(values)
     try{
+      dispatch(SetLoading(true))
         const response =await LoginUser(values)
+
         if(response.success){
            
             message.success(response.message)
@@ -22,6 +28,7 @@ const Login = () => {
         }
 
     }catch(error){
+      dispatch(SetLoading(false))
         message.error(error.message)
     }
   }
@@ -57,11 +64,12 @@ const Login = () => {
           <>
       
             
-            <Form.Item label="Email" name='email'>
+            <Form.Item label="Email" name='email'
+              rules={getAntdInputValidation()}>
               <Input  type='email'/>
             </Form.Item>
           
-            <Form.Item label="Password" name='password'>
+            <Form.Item label="Password" name='password' rules={getAntdInputValidation()}>
               <Input  type='password'/>
             </Form.Item>
           </>
