@@ -34,7 +34,7 @@ const Inventory = () => {
             if(record.inventoryType ==="in"){
                 return record.donar.name
             }else{
-                return record.hospital.name
+                return record.hospital.hospitalName
             }
             }
         },
@@ -50,6 +50,7 @@ const Inventory = () => {
             const response =await GetInventory();
             dispatch(SetLoading(false))
             if(response.success){
+             
                 setData(response.data)
             }else{
                 throw new Error(response.message)
@@ -72,7 +73,8 @@ const Inventory = () => {
         </Button>
         </div>
         <Table columns={columns} dataSource ={data}/>
-        {open && <InventoryForm open={open} setOpen={setOpen}/>}
+        {open && <InventoryForm open={open} setOpen={setOpen}
+        reloadData={getData}/>}
    </div>
   );
 }

@@ -19,6 +19,7 @@ const Login = () => {
           ...values,
           userType:type,
         })
+        console.log(response)
 
         if(response.success){
            
