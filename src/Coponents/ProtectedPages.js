@@ -51,7 +51,8 @@ const ProtectedPages = ({ children }) => {
           <div className="flex items-center gap-1 ">
             <i class="ri-user-3-line"></i>
             <div className="flex flex-col">
-            <span className="mr-5 text-xl cursor-pointer">
+            <span className="mr-5 text-xl cursor-pointer"
+            onClick={() => navigate("/profile")}>
               {getLoggedInUser(currentUser).toUpperCase()}
             </span>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -7,8 +7,7 @@ import { ConfigProvider } from "antd";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
   <Provider store={store}>
     <ConfigProvider
       theme={{
@@ -20,7 +19,8 @@ root.render(
     >
       <App />
     </ConfigProvider>
-  </Provider>
+  </Provider>,
+  document.getElementById("root")
 );
 
 reportWebVitals();

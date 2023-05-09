@@ -1,3 +1,6 @@
+import moment from 'moment'
+
+
 export const getLoggedInUser =(user) =>{
     if(user.userType ==="donar"){
         return user.name
@@ -15,4 +18,9 @@ export const getAntdInputValidation =()=>{
         required:true,
         message:"Required"
     }]
+}
+
+
+export const getDateFormat =(date) =>{
+    return moment(date).format("DD-MM-YYYY  hh:mm A")
 }

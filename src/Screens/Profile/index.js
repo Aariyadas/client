@@ -1,7 +1,7 @@
 import { Tabs } from 'antd'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import InventoryForm from './Inventory/InventoryForm.js'
+import Inventory from './Inventory'
 
 const Profile = () => {
     const { currentUser } = useSelector((state) => state.users)
@@ -11,7 +11,7 @@ const Profile = () => {
                 {currentUser.userType === "organization" && (
                     <>
                         <Tabs.Tab tab="Inventory" key="1">
-                        <InventoryForm/>
+                        <Inventory/>
                         </Tabs.Tab>
                         <Tabs.Tab tab="Donars" key="2"></Tabs.Tab>
                         <Tabs.Tab tab="Hospitals" key="3"></Tabs.Tab>
