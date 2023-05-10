@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import Inventory from './Inventory'
 import Donars from './Donars'
 import Hospitals from './Hospitals'
+import Organization from './Organization'
 
 const Profile = () => {
     const { currentUser } = useSelector((state) => state.users)
@@ -23,6 +24,30 @@ const Profile = () => {
                         </Tabs.Tab>
                     </>
                 )}
+                {currentUser.userType === "donar" && (
+                    <>
+                    <Tabs.Tab tab="Contributions" key="4">
+                           
+                        </Tabs.Tab>
+                     <Tabs.Tab tab="Organizations" key="5">
+                            <Organization/>
+                        </Tabs.Tab>
+
+                    </>
+                )}
+
+               {currentUser.userType === "hospital" && (
+                    <>
+                    <Tabs.Tab tab="Transfusing" key="6">
+                           
+                        </Tabs.Tab>
+                     <Tabs.Tab tab="Organizations" key="7">
+                            <Organization
+                           userType="hospital"/>
+                        </Tabs.Tab>
+
+                    </>
+                )} 
             </Tabs>
         </div>
     )

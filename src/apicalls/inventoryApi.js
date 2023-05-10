@@ -1,4 +1,4 @@
-import { axiosInstance } from "../apicalls/axios";
+import { axiosInstance } from "./axios";
 
 export const AddInventory = (data) => {
   return axiosInstance("post", "/api/inventory/add", data);

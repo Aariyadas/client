@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { getAntdInputValidation } from "../../../utils/Helper";
 import { useDispatch, useSelector } from "react-redux";
 import { SetLoading } from "../../../redux/loaderSlice";
-import { AddInventory } from "../../../apicalls/inventory";
+import { AddInventory } from "../../../apicalls/inventoryApi";
 
 const InventoryForm = ({ open, setOpen, reloadData }) => {
   const{currentUser} =useSelector(state=> state.users)

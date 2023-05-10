@@ -25,3 +25,11 @@ export const RegisterUser = async (payload) => {
   export const GetAllHospitalsOfAnOrganization =() =>{
     return axiosInstance("get",'/api/users/get-all-hospitals')
   }
+
+  export const GetAllOrganizationofADonar=() =>{
+    return axiosInstance("get",'/api/users/get-all-organization-for-donars')
+  }
+
+  export const GetAllOrganizationofAHospital=() =>{
+    return axiosInstance("get",'/api/users/get-all-organization-for-hospitals')
+  }

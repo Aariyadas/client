@@ -2,19 +2,24 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { SetLoading } from '../../../redux/loaderSlice'
 import { message,Table } from 'antd'
-import { GetALLDonarsOfAnOrganization } from '../../../apicalls/userApi'
+import { GetAllOrganizationofADonar, GetAllOrganizationofAHospital } from '../../../apicalls/userApi'
 import { getDateFormat } from '../../../utils/Helper'
 
 
 
-const Donars = () => {
+const Organization= (userType) => {
     const [data,setData]=React.useState([])
     const dispatch=useDispatch()
     const getData =async() =>{
         try{
             dispatch(SetLoading(true))
-            const response =await GetALLDonarsOfAnOrganization();
-            dispatch(SetLoading(false))
+           let response =null ;
+           if(userType === "hospital"){
+            response = await GetAllOrganizationofAHospital();
+           } else{
+            response = await GetAllOrganizationofADonar();
+           }       
+           dispatch(SetLoading(false))
             if(response.success){
              
                 setData(response.data)
@@ -32,7 +37,7 @@ const Donars = () => {
     const columns =[
         {
             title:"Name",
-            dataIndex:"name",
+            dataIndex:"organizationName",
         },
         {
             title:"Email",
@@ -41,6 +46,10 @@ const Donars = () => {
         {
             title:"Phone",
             dataIndex:"phone"
+        },
+        {
+            title:"Address",
+            dataIndex:"address"
         },
         {
             title:"Created At",
@@ -62,4 +71,4 @@ const Donars = () => {
   )
 }
 
-export default Donars
+export default Organization

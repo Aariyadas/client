@@ -61,7 +61,7 @@ const Donars = () => {
     
   return (
     <div>
-        <h1>Hospitals</h1>
+      
         <Table columns={columns} dataSource={data}/>
     </div>
 
