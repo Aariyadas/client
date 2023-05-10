@@ -15,3 +15,13 @@ export const RegisterUser = async (payload) => {
     return response;
    
   }
+
+
+  export const GetALLDonarsOfAnOrganization =() =>{
+    return axiosInstance("get",'/api/users/get-all-donars')
+  }
+
+
+  export const GetAllHospitalsOfAnOrganization =() =>{
+    return axiosInstance("get",'/api/users/get-all-hospitals')
+  }

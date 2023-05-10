@@ -41,7 +41,7 @@ const Inventory = () => {
         {
             title:"Date",
             dataIndex:"createdAt",
-            render:(test)=> getDateFormat(text)
+            render:(text)=> getDateFormat(text)
         },
     ]
     const getData =async() =>{
