@@ -64,6 +64,9 @@ const Inventory = () => {
     React.useEffect(()=>{
         getData()
     },[])
+
+
+    
   return (
     <div>
         
