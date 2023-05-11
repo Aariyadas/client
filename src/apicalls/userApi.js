@@ -26,10 +26,10 @@ export const RegisterUser = async (payload) => {
     return axiosInstance("get",'/api/users/get-all-hospitals')
   }
 
-  export const GetAllOrganizationofADonar=() =>{
-    return axiosInstance("get",'/api/users/get-all-organization-for-donars')
-  }
-
-  export const GetAllOrganizationofAHospital=() =>{
-    return axiosInstance("get",'/api/users/get-all-organization-for-hospitals')
-  }
+  export const getAllOrganizationsForDonars = () => {
+    return axiosInstance("get",'/api/users/get-all-organization-for-donars');
+  };
+  
+  export const getAllOrganizationsForHospital = () => {
+    return axiosInstance("get",'/api/users/get-all-organizations-for-hospital');
+  };
