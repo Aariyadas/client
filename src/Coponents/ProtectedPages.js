@@ -42,7 +42,9 @@ const ProtectedPages = ({ children }) => {
       // Header
       <div>
         <div className="flex justify-between items-center bg-primary text-white px-5 py-3">
-          <div>
+          <div
+            onClick={() => navigate("/")} className="cursor-pointer"
+            >
             <h1 className="text-2xl">SAVING ALERT</h1>
             <span className="text-sm">
               {currentUser.userType.toUpperCase()}

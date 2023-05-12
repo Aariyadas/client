@@ -10,6 +10,6 @@ export const GetInventory =() =>{
 }
 
 
-export const  GetInventoryWithFilters =(data) =>{
-  return axiosInstance("post","api/inventory/filter",data)
+export const  GetInventoryWithFilters =(filters,limit) =>{
+  return axiosInstance("post","api/inventory/filter",filters,limit)
 }

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { SetLoading } from '../redux/loaderSlice';
 import { GetInventoryWithFilters } from '../apicalls/inventoryApi';
 
-const InventoryTable = (filters) => {
+const InventoryTable = (filters,limit) => {
     const [data, setData] = React.useState([]);
     
    
@@ -14,7 +14,7 @@ const InventoryTable = (filters) => {
     const getData =async() =>{
         try{
             dispatch(SetLoading(true))
-            const response =await GetInventoryWithFilters (filters);
+            const response =await GetInventoryWithFilters (filters,limit);
             console.log(response)
             dispatch(SetLoading(false))
             if(response.success){
